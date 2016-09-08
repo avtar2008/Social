@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Home Page</title>
+<link rel="stylesheet" type="text/css" href="myCss.css" />
+</head>
+
+<body>
+	<header id="home_header"> WelCome to SocialSite. </header>
+	<form enctype="application/json" id = "form1">
+		<input type = "text" name = "text1" value = "hello" />
+		<input type = "text" name = "text2" value = "world"/>
+		<input type = "button" name = "button1" value = "Click Me" onclick="makeJson()"  />
+	</form>	
+	
+	<label id="l1" ></label>
+
+	<script type="text/javascript">
+	function makeJson()	{
+		console.dir(document.getElementById("form1"));
+	}
+	
+	function on() {
+		        var xmlHttp = new XMLHttpRequest();
+		        var profile = new Object();
+		        
+		        xmlHttp.open( "GET", "http://localhost:8080/Social/serv/avtar" , false ); 
+		        xmlHttp.send( null );
+		        return xmlHttp.responseText;
+		    }
+	</script>
+
+</body>
+</html>
