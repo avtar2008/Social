@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Home Page</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> 
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.3/angular.js"></script>
+<link rel="stylesheet" type="text/css" href="CSS/home.css" />
+
+</head>
+	
+<body>
+<div id=big_div data-ng-app="">
+	<div data-ng-include = "'header.html'">
+	</div>
+	
+	<div id="mid_div">
+		<div data-ng-include="'LHN.html'"></div>
+		<section id= "main_section">
+		
+			<form enctype="application/json" id="UserDetails">
+				<label id= "detail_label" >User Details</label>
+				<input type="text" id="text1" value="FirstName" /> 
+				<input type="text" id="text2" value="LastName" />   
+				<input type="text" id="text3" value="Age" />   
+				<input type="button" name="button1" onclick="on()" value="Submit" />
+			</form>
+		</section>
+	</div>
+	
+	<div data-ng-include="'footer.html'"></div>
+	
+</div>
+
+<script type="text/javascript">
+		$(document).ready(function(){
+			$('input').click(function(){
+				$("#"+(this.id)).val("");		
+				
+			});
+		 	
+		
+		
+		});
+		
+		function on() {
+			
+			var obj = new Object();
+			var param = document.getElementById("text1").value; 
+			obj.name = param;
+			//obj.name2 = document.getElementById("text2").value;
+
+			var jsonString = JSON.stringify(obj);
+
+			var xmlHttp = new XMLHttpRequest();
+			xmlHttp.open("POST", "http://localhost:8080/Social/rest/profiles/" + param,
+					false);
+			xmlHttp.setRequestHeader("Content-type", "application/json");
+			xmlHttp.send(jsonString);
+			return xmlHttp.responseText;
+		}
+		
+	</script>
+
+</body>
+</html>

@@ -2,7 +2,6 @@ package main.services.ws;
 
 import javax.ws.rs.ApplicationPath;
 
-import org.glassfish.jersey.CommonProperties;
 import org.glassfish.jersey.server.ResourceConfig;
 
 @ApplicationPath("/rest/*")
